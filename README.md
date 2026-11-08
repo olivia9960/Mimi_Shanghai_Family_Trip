@@ -5,7 +5,7 @@
 ## 上傳與開啟
 
 1. 在 GitHub 建立一個 repository（若公開，請只放可以公開的內容）。
-2. 解壓縮本檔案包，把 **index.html、style.css、app.js、data.js、icon.svg、.nojekyll** 放到 repository 最外層。不要只上傳 ZIP，也不要多包一層資料夾。
+2. 解壓縮本檔案包，把 **index.html、style.css、app.js、data.js、icon.svg、.nojekyll 與整個 illustrations 資料夾** 放到 repository 最外層。不要只上傳 ZIP，也不要多包一層資料夾。
 3. Commit changes。
 4. Settings → Pages → Build and deployment → Source 選 Deploy from a branch。
 5. Branch 選 main、資料夾選 /(root)，按 Save。
@@ -57,3 +57,7 @@
 ## 手機版排版
 
 字體已恢復放大前的大小。住宿卡片的地圖連結另放一列，插畫說明放在圖片下方，手機行程右側保留32px按鈕空間，兩顆按鈕間距16px。載入檔案附版本參數以減少舊快取混用。
+
+## 每日插畫
+
+六天各有一幅原創 SVG 插畫，沿用首頁的米色、酒紅、灰綠配色：上海初見、教堂銀杏抹茶、水鄉石橋、輪渡兩岸、楓葉音樂、返程機票。圖片在獨立區塊內按比例縮放，不影響行程文字與按鈕。請將 illustrations 資料夾一併上傳。
