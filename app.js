@@ -4,30 +4,24 @@ const $=s=>document.querySelector(s);
 const escapeHTML=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const mapURL=place=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(place);
 const storage={get(key,fallback=''){try{return localStorage.getItem(key)??fallback}catch{return fallback}},set(key,value){try{localStorage.setItem(key,value);return true}catch{return false}}};
-// Save only stable item IDs so uploaded wording and photo updates remain current.
+// Store item IDs only, preserving updated wording when a new version is uploaded.
 trip.days.forEach((d,di)=>d.items.forEach((item,i)=>{item.id ||= `d${di+1}-s${i+1}`;}));
-const uploadedOrder=trip.days.map(d=>d.items.map(i=>i.id));
 const itemCatalog=new Map(trip.days.flatMap(d=>d.items.map(i=>[i.id,i])));
-let editing=false;
 function applyOrder(order){
  if(!Array.isArray(order)||order.length!==trip.days.length||order.some(d=>!Array.isArray(d)))return false;
  const ids=order.flat();if(ids.length!==itemCatalog.size||new Set(ids).size!==itemCatalog.size||ids.some(id=>!itemCatalog.has(id)))return false;
  order.forEach((ids,i)=>{trip.days[i].items=ids.map(id=>itemCatalog.get(id));});return true;
 }
 try{applyOrder(JSON.parse(storage.get('shanghai-order-v2','null')));}catch{}
-function saveSchedule(message){
+function moveStop(index,step){
+ const items=trip.days[selected].items,target=index+step;
+ if(!Number.isInteger(index)||![1,-1].includes(step)||!items[index]||target<0||target>=items.length)return false;
+ [items[index],items[target]]=[items[target],items[index]];
  const ok=storage.set('shanghai-order-v2',JSON.stringify(trip.days.map(d=>d.items.map(i=>i.id))));
- $('#schedule-state').textContent=ok?message+' 已存在本裝置；分享請匯出 data.js 再上傳。':message+' 瀏覽器無法儲存，請立即匯出 data.js。';
  renderDay();renderPrint();
+ $('#schedule-state').textContent=ok?'已儲存新順序，原標示時間不變。僅儲存在這台裝置。':'已調整順序，但瀏覽器無法儲存，關閉頁面後可能恢復。';
+ return true;
 }
-function moveStop(index,targetDay,targetIndex){
- const source=trip.days[selected].items;
- if(!Number.isInteger(index)||!source[index]||!Number.isInteger(targetDay)||!trip.days[targetDay])return false;
- if(targetDay===selected&&(!Number.isInteger(targetIndex)||targetIndex<0||targetIndex>=source.length))return false;
- const [item]=source.splice(index,1);trip.days[targetDay].items.splice(targetIndex??trip.days[targetDay].items.length,0,item);
- saveSchedule('已移動「'+item.title+'」。');return true;
-}
-function exportSchedule(){return '// 行程由網頁匯出，覆蓋 GitHub 的 data.js 即可分享。\nwindow.TRIP = '+JSON.stringify(trip,null,2)+';\n';}
 let selected=0,weather=null,weatherState='loading',weatherUpdated='',requestId=0;
 const dateInShanghai=()=>new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
 function forecastStatus(day,today=dateInShanghai()){
@@ -48,20 +42,21 @@ function weatherMarkup(day){
  const [icon,label]=weatherDescription(daily.weather_code[i]);const num=v=>Number.isFinite(v)?Math.round(v):'—';
  return head+`<div class="weather-main"><span class="weather-icon" aria-hidden="true">${icon}</span><div><strong>${num(daily.temperature_2m_min[i])}° — ${num(daily.temperature_2m_max[i])}°</strong><div>${label}</div></div></div><p>降雨機率 ${num(daily.precipitation_probability_max[i])}% · 最大風速 ${num(daily.wind_speed_10m_max[i])} km/h</p><p>查詢時間 ${escapeHTML(weatherUpdated)} · Open-Meteo</p>`;
 }
-function photoMarkup(item){return (item.photos||[]).map(key=>{
- const photo=trip.photos?.[key];if(!photo)return '';
- return `<figure class="stop-photo"><img src="${escapeHTML(photo.src)}" alt="${escapeHTML(photo.caption)}" width="600" height="400" loading="lazy" decoding="async"><figcaption>${escapeHTML(photo.caption)}<br><a href="${escapeHTML(photo.source)}" target="_blank" rel="noopener noreferrer">${escapeHTML(photo.author)} ↗</a> · <a href="${escapeHTML(photo.licenseUrl||photo.source)}" target="_blank" rel="noopener noreferrer">${escapeHTML(photo.license)}</a></figcaption></figure>`;
- }).join('');}
-function stops(day,editable=false){return `<div class="timeline">${day.items.length?day.items.map((item,index)=>`<article class="stop"><div class="stop-time">${escapeHTML(item.time)}</div><div class="stop-content"><div class="stop-layout"><div><h4>${escapeHTML(item.title)}</h4><p>${escapeHTML(item.note)}</p><div class="stop-bottom"><span class="tag">${escapeHTML(item.type)}</span>${item.place?`<a class="text-link" href="${mapURL(item.place)}" target="_blank" rel="noopener noreferrer">地圖搜尋 ↗</a>`:''}</div></div>${item.photos?.length?`<div class="stop-photos">${photoMarkup(item)}</div>`:''}</div>${editable?`<div class="move-controls"><button class="quiet" type="button" data-step="-1" data-index="${index}" aria-label="上移：${escapeHTML(item.title)}" ${index===0?'disabled':''}>↑ 上移</button><button class="quiet" type="button" data-step="1" data-index="${index}" aria-label="下移：${escapeHTML(item.title)}" ${index===day.items.length-1?'disabled':''}>↓ 下移</button><label class="move-label">移到 <select id="destination-${index}" aria-label="${escapeHTML(item.title)}的目標日期">${trip.days.map((d,di)=>di===selected?'':`<option value="${di}">${d.date.slice(5).replace('-','/')} 週${d.week}</option>`).join('')}</select></label><button class="quiet" type="button" data-transfer="${index}">移至該天</button></div>`:''}</div></article>`).join(''):'<p class="empty-day">這天目前沒有行程，可以從其他天移過來。</p>'}</div>`;}
+function stops(day,controls=false){return `<div class="timeline">${day.items.length?day.items.map((item,index)=>`<article class="stop"><div class="stop-time">${escapeHTML(item.time)}</div><div class="stop-content"><h4>${escapeHTML(item.title)}</h4><p>${escapeHTML(item.note)}</p><div class="stop-bottom"><span class="tag">${escapeHTML(item.type)}</span>${item.place?`<a class="text-link" href="${mapURL(item.place)}" target="_blank" rel="noopener noreferrer">地圖搜尋 ↗</a>`:''}</div></div>${controls?`<div class="stop-arrows"><button type="button" data-step="-1" data-index="${index}" aria-label="上移：${escapeHTML(item.title)}" title="上移" ${index===0?'disabled':''}>↑</button><button type="button" data-step="1" data-index="${index}" aria-label="下移：${escapeHTML(item.title)}" title="下移" ${index===day.items.length-1?'disabled':''}>↓</button></div>`:''}</article>`).join(''):'<p class="empty-day">這天目前沒有行程。</p>'}</div>`;}
 function renderDay(){
  const day=trip.days[selected];
  document.querySelectorAll('.day-tab').forEach((tab,i)=>{tab.setAttribute('aria-selected',String(i===selected));tab.tabIndex=i===selected?0:-1;});
  $('#day-panel').setAttribute('aria-labelledby','tab-'+selected);
- $('#day-panel').innerHTML=`<div class="day-top"><div class="day-title"><p class="eyebrow">DAY ${String(selected+1).padStart(2,'0')} / ${escapeHTML(day.tag)}</p><h3>${escapeHTML(day.title)}</h3><p>${escapeHTML(day.summary)}</p></div><aside class="weather" aria-label="當日天氣" aria-live="polite">${weatherMarkup(day)}</aside></div>${editing?'<p class="move-warning">可上下調整或移到其他天的最後。時間、交通及天氣區域不會自動重排，移動後請再確認。</p>':''}${stops(day,editing)}<div class="note-box"><label class="note-label" for="day-note">這一天的小備註 <span>只存在本裝置，不會同步到家人手機</span></label><textarea id="day-note" placeholder="例如：訂位時間、想吃的菜、還想去的地方…"></textarea><p class="note-hint" id="note-state">備註只留在本裝置；行程排序可用上方按鈕匯出分享。</p></div>`;
+ $('#day-panel').innerHTML=`<div class="day-top"><div class="day-title"><p class="eyebrow">DAY ${String(selected+1).padStart(2,'0')} / ${escapeHTML(day.tag)}</p><h3>${escapeHTML(day.title)}</h3><p>${escapeHTML(day.summary)}</p></div><aside class="weather" aria-label="當日天氣" aria-live="polite">${weatherMarkup(day)}</aside></div>${stops(day,true)}<div class="note-box"><label class="note-label" for="day-note">這一天的小備註 <span>只存在本裝置，不會同步到家人手機</span></label><textarea id="day-note" placeholder="例如：訂位時間、想吃的菜、還想去的地方…"></textarea><p class="note-hint" id="note-state">備註只存在這台裝置。</p></div>`;
  const note=$('#day-note');note.value=storage.get('shanghai-note-'+day.date);note.addEventListener('input',()=>{const ok=storage.set('shanghai-note-'+day.date,note.value);$('#note-state').textContent=ok?'備註已儲存在本裝置。':'瀏覽器無法儲存，離開前請自行複製備註。';});
  $('#refresh-weather').addEventListener('click',fetchWeather);
- $('#day-panel').querySelectorAll('[data-step]').forEach(button=>button.addEventListener('click',()=>{const index=Number(button.dataset.index),step=Number(button.dataset.step);moveStop(index,selected,index+step);const follow=$('#day-panel').querySelector(`[data-index="${index+step}"][data-step="${step}"]`);follow?.focus();}));
- $('#day-panel').querySelectorAll('[data-transfer]').forEach(button=>button.addEventListener('click',()=>{const index=Number(button.dataset.transfer);moveStop(index,Number($('#destination-'+index).value));}));
+ $('#day-panel').querySelectorAll('[data-step]').forEach(button=>button.addEventListener('click',()=>{
+  const index=Number(button.dataset.index),step=Number(button.dataset.step);
+  if(!moveStop(index,step))return;
+  const panel=$('#day-panel');
+  const follow=panel.querySelector(`[data-index="${index+step}"][data-step="${step}"]:not(:disabled)`)||panel.querySelector(`[data-index="${index+step}"]:not(:disabled)`);
+  follow?.focus({preventScroll:true});
+ }));
 }
 async function fetchWeather(){
  const token=++requestId;weatherState='loading';renderDay();
@@ -81,9 +76,6 @@ $('#packing').innerHTML=packing.map((label,i)=>`<label><input type="checkbox" da
 document.querySelectorAll('[data-pack]').forEach(el=>el.addEventListener('change',()=>storage.set('shanghai-pack-'+el.dataset.pack,el.checked?'1':'0')));
 const printDays=document.createElement('div');printDays.className='print-days';$('#journey').append(printDays);
 function renderPrint(){printDays.innerHTML=trip.days.map((d,i)=>`<section class="print-day"><div class="day-title"><p>DAY ${i+1} · ${d.date} 星期${d.week}</p><h3>${escapeHTML(d.title)}</h3></div>${stops(d)}</section>`).join('');}
-$('#edit-schedule').addEventListener('click',()=>{editing=!editing;$('#edit-schedule').setAttribute('aria-pressed',String(editing));$('#edit-schedule').textContent=editing?'完成調整':'調整行程';renderDay();});
-$('#export-schedule').addEventListener('click',()=>{const blob=new Blob([exportSchedule()],{type:'text/javascript;charset=utf-8'});const url=URL.createObjectURL(blob);const link=document.createElement('a');link.href=url;link.download='data.js';document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);$('#schedule-state').textContent='已匯出 data.js。上傳 GitHub 覆蓋同名檔案，家人就能看到新順序；備註不含在匯出中。';});
-$('#reset-schedule').addEventListener('click',()=>{if(!window.confirm('恢復這次上傳版本的順序？本裝置的排序調整會被取代，備註保留。'))return;applyOrder(uploadedOrder);saveSchedule('已恢復上傳版順序。');});
 renderPrint();
 $('#print').addEventListener('click',()=>window.print());
 renderDay();fetchWeather();

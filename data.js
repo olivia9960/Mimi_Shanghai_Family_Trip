@@ -1,4 +1,4 @@
-// 修改行程或由網頁匯出後，覆蓋 GitHub 的 data.js 即可分享。
+// 修改這個檔案並上傳 GitHub，即可更新家人看到的行程。
 window.TRIP = {
   "title": "和爸媽，慢遊上海",
   "year": 2026,
@@ -72,10 +72,7 @@ window.TRIP = {
           "note": "逛街、買伴手禮，累了就回飯店。Ms.Juan卷分店及營業時間待確認。",
           "place": "南京路步行街 上海",
           "type": "散步",
-          "id": "d1-s4",
-          "photos": [
-            "nanjing"
-          ]
+          "id": "d1-s4"
         }
       ]
     },
@@ -103,11 +100,7 @@ window.TRIP = {
           "note": "慢慢看建築；教堂入內時段與宗教活動安排出發前確認。",
           "place": "徐家汇书院",
           "type": "人文",
-          "id": "d2-s2",
-          "photos": [
-            "library",
-            "cathedral"
-          ]
+          "id": "d2-s2"
         },
         {
           "time": "中午前後",
@@ -115,10 +108,7 @@ window.TRIP = {
           "note": "武康大樓拍照，再去 Apoli Itabakery。麵包店精確定位待確認。",
           "place": "武康大楼",
           "type": "散步",
-          "id": "d2-s3",
-          "photos": [
-            "wukang"
-          ]
+          "id": "d2-s3"
         },
         {
           "time": "下午",
@@ -126,11 +116,7 @@ window.TRIP = {
           "note": "留意武康路390號銀杏，沿路看小物。葉況依天氣，走累就坐下休息。",
           "place": "武康路390号",
           "type": "賞秋",
-          "id": "d2-s4",
-          "photos": [
-            "wukangroad",
-            "anfu"
-          ]
+          "id": "d2-s4"
         },
         {
           "time": "下午茶",
@@ -138,10 +124,7 @@ window.TRIP = {
           "note": "喝抹茶、休息，可以在淮海中路附近逛逛。分店定位待確認。",
           "place": "Matcha Wang 淮海中路 上海",
           "type": "茶歇",
-          "id": "d2-s5",
-          "photos": [
-            "huaihai"
-          ]
+          "id": "d2-s5"
         },
         {
           "time": "18:00–19:30",
@@ -169,10 +152,7 @@ window.TRIP = {
           "note": "交通方式待定，行車時間看路況。",
           "place": "朱家角古镇",
           "type": "交通",
-          "id": "d3-s1",
-          "photos": [
-            "zhujiajiao"
-          ]
+          "id": "d3-s1"
         },
         {
           "time": "中午",
@@ -187,10 +167,7 @@ window.TRIP = {
           "note": "喝茶休息，遊船選配；石板路與橋階慢慢走。",
           "place": "朱家角 放生桥",
           "type": "散步",
-          "id": "d3-s3",
-          "photos": [
-            "bridge"
-          ]
+          "id": "d3-s3"
         },
         {
           "time": "約16:00",
@@ -213,10 +190,7 @@ window.TRIP = {
           "note": "短暫散步，約20:30–21:00回飯店；累了直接搭車。",
           "place": "外滩万国建筑博览群",
           "type": "夜景",
-          "id": "d3-s6",
-          "photos": [
-            "bund"
-          ]
+          "id": "d3-s6"
         }
       ]
     },
@@ -236,10 +210,7 @@ window.TRIP = {
           "note": "認準帆聲西餅屋，黃河路28號。排隊太長就調整，不硬等。",
           "place": "国际饭店帆声西饼屋 黄河路28号",
           "type": "伴手禮",
-          "id": "d4-s1",
-          "photos": [
-            "parkhotel"
-          ]
+          "id": "d4-s1"
         },
         {
           "time": "上午",
@@ -247,10 +218,7 @@ window.TRIP = {
           "note": "逛街、看小物。",
           "place": "南京路步行街 上海",
           "type": "散步",
-          "id": "d4-s2",
-          "photos": [
-            "nanjing"
-          ]
+          "id": "d4-s2"
         },
         {
           "time": "12:00–13:00",
@@ -266,10 +234,7 @@ window.TRIP = {
           "note": "金陵東路渡口 → 東昌路渡口，2元公共輪渡，依當日票價與班次。注意與觀光遊船碼頭區分。",
           "place": "金陵东路渡口",
           "type": "輪渡",
-          "id": "d4-s4",
-          "photos": [
-            "ferry"
-          ]
+          "id": "d4-s4"
         },
         {
           "time": "約14:30–16:30",
@@ -277,10 +242,7 @@ window.TRIP = {
           "note": "看對岸外灘，不需要走完整段濱江；依爸媽體力調整。",
           "place": "东昌路渡口 滨江",
           "type": "散步",
-          "id": "d4-s5",
-          "photos": [
-            "pudong"
-          ]
+          "id": "d4-s5"
         },
         {
           "time": "約16:30–17:00",
@@ -288,10 +250,7 @@ window.TRIP = {
           "note": "東昌路渡口 → 復興東路渡口。下船後仍需步行或打車到豫園、城隍廟。冬季目前21:00收渡，當日再確認；想在船上看夜景可視天色稍延後。",
           "place": "东昌路渡口",
           "type": "輪渡",
-          "id": "d4-s6",
-          "photos": [
-            "ferry"
-          ]
+          "id": "d4-s6"
         },
         {
           "time": "傍晚–晚上",
@@ -299,10 +258,7 @@ window.TRIP = {
           "note": "看亮燈、逛街。此處為商城與街區夜景，不代表豫園園林或廟宇夜間開放。",
           "place": "豫园商城",
           "type": "夜景",
-          "id": "d4-s7",
-          "photos": [
-            "yuyuan"
-          ]
+          "id": "d4-s7"
         },
         {
           "time": "18:00–19:30",
@@ -337,10 +293,7 @@ window.TRIP = {
           "note": "慢慢拍照、休息；楓紅狀況依當年氣溫。",
           "place": "秋霞圃",
           "type": "賞秋",
-          "id": "d5-s2",
-          "photos": [
-            "qiuxia"
-          ]
+          "id": "d5-s2"
         },
         {
           "time": "餓了再吃",
@@ -348,10 +301,7 @@ window.TRIP = {
           "note": "肚子餓才到附近找東西吃，不安排固定逛街。",
           "place": "嘉定 州桥老街",
           "type": "美食",
-          "id": "d5-s3",
-          "photos": [
-            "zhouqiao"
-          ]
+          "id": "d5-s3"
         },
         {
           "time": "下午",
@@ -359,10 +309,7 @@ window.TRIP = {
           "note": "視體力停留，不趕入寺參觀。",
           "place": "静安寺",
           "type": "人文",
-          "id": "d5-s4",
-          "photos": [
-            "jingan"
-          ]
+          "id": "d5-s4"
         },
         {
           "time": "晚餐前",
@@ -370,10 +317,7 @@ window.TRIP = {
           "note": "靜安嘉里中心南區B2，買飲料、休息。",
           "place": "CHARLIETOWN红茶公司 静安嘉里中心",
           "type": "茶歇",
-          "id": "d5-s5",
-          "photos": [
-            "kerry"
-          ]
+          "id": "d5-s5"
         },
         {
           "time": "18:00起",
@@ -427,151 +371,5 @@ window.TRIP = {
         }
       ]
     }
-  ],
-  "photos": {
-    "nanjing": {
-      "src": "./assets/nanjing.jpg",
-      "caption": "南京路步行街",
-      "author": "Hermann Luyken",
-      "license": "CC0",
-      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-      "source": "https://commons.wikimedia.org/wiki/File:2014.11.15.181419_Nanjing_Road_Pedestrian_Zone_Shanghai.jpg"
-    },
-    "cathedral": {
-      "src": "./assets/cathedral.jpg",
-      "caption": "徐家匯天主教堂",
-      "author": "This illustration was made by Peter Potrowl.\nPlease credit this with : © Peter Potrowl in the immediate vicinity of the image. A link to my website sitemai.eu would be much appreciated but isn't mandatory.\nAn email to\n\nPeter Potrowl would be appreciated too.\nDo not copy this image illegally by ignoring the terms of the license below, as it is not in the public domain.\nIf you would like special permission to use, license, or purchase the image please contact me Peter Potrowl to negotiate terms.\nMore free pictures in my website. Donations are accepted here and here.\n\n (talk)",
-      "license": "CC BY 3.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
-      "source": "https://commons.wikimedia.org/wiki/File:Saint-Ignatius_cathedral_of_Shanghai.jpg"
-    },
-    "library": {
-      "src": "./assets/library.jpg",
-      "caption": "徐家匯書院",
-      "author": "日期20220626",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-      "source": "https://commons.wikimedia.org/wiki/File:%E5%BE%90%E5%AE%B6%E6%B1%87%E4%B9%A6%E9%99%A2.jpg"
-    },
-    "wukang": {
-      "src": "./assets/wukang.jpg",
-      "caption": "武康大樓",
-      "author": "N509FZ",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-      "source": "https://commons.wikimedia.org/wiki/File:Wukang_Mansion_(20191114161507).jpg"
-    },
-    "anfu": {
-      "src": "./assets/anfu.jpg",
-      "caption": "安福路店家外觀（參考照）",
-      "author": "RunningTurtle8964",
-      "license": "CC0",
-      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-      "source": "https://commons.wikimedia.org/wiki/File:A_brunch_spot_at_Anfu_Rd.jpg"
-    },
-    "huaihai": {
-      "src": "./assets/huaihai.jpg",
-      "caption": "淮海中路街景（非 Matcha Wang 店面）",
-      "author": "Livelikerw",
-      "license": "CC BY-SA 3.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-      "source": "https://commons.wikimedia.org/wiki/File:Middle_Huaihai_Rd._2.JPG"
-    },
-    "zhujiajiao": {
-      "src": "./assets/zhujiajiao.jpg",
-      "caption": "朱家角古鎮",
-      "author": "BrokenSphere",
-      "license": "CC BY-SA 3.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-      "source": "https://commons.wikimedia.org/wiki/File:Zhujiajiao_canal_4.JPG"
-    },
-    "bridge": {
-      "src": "./assets/bridge.jpg",
-      "caption": "朱家角・放生橋",
-      "author": "Hijin6908",
-      "license": "CC BY-SA 3.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-      "source": "https://commons.wikimedia.org/wiki/File:%E6%94%BE%E7%94%9F%E6%A1%A5.jpg"
-    },
-    "bund": {
-      "src": "./assets/bund.jpg",
-      "caption": "外灘景色",
-      "author": "Dllu",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-      "source": "https://commons.wikimedia.org/wiki/File:Blue_hour_view_of_the_Bund_from_the_Shanghai_World_Financial_Center_dllu.jpg"
-    },
-    "parkhotel": {
-      "src": "./assets/parkhotel.jpg",
-      "caption": "國際飯店外觀",
-      "author": "WiNG",
-      "license": "CC BY 3.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
-      "source": "https://commons.wikimedia.org/wiki/File:Shanghai_Park_Hotel_2007.jpg"
-    },
-    "ferry": {
-      "src": "./assets/ferry.jpg",
-      "caption": "東昌路渡口",
-      "author": "WQL",
-      "license": "CC BY-SA 3.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-      "source": "https://commons.wikimedia.org/wiki/File:Dongchang_Road_Pier_Building.jpg"
-    },
-    "pudong": {
-      "src": "./assets/pudong.jpg",
-      "caption": "浦東陸家嘴天際線",
-      "author": "Rose Abrams",
-      "license": "CC BY 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
-      "source": "https://commons.wikimedia.org/wiki/File:Shanghai_skyline.jpg"
-    },
-    "yuyuan": {
-      "src": "./assets/yuyuan.jpg",
-      "caption": "豫園商城夜景",
-      "author": "Windmemories",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-      "source": "https://commons.wikimedia.org/wiki/File:20191026_Yu_Garden_at_night_03.jpg"
-    },
-    "qiuxia": {
-      "src": "./assets/qiuxia.jpg",
-      "caption": "秋霞圃（非即時葉況）",
-      "author": "Fayhoo",
-      "license": "CC BY-SA 3.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-      "source": "https://commons.wikimedia.org/wiki/File:Qiuxiapu.jpg"
-    },
-    "zhouqiao": {
-      "src": "./assets/zhouqiao.jpg",
-      "caption": "嘉定州橋老街",
-      "author": "钉钉",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-      "source": "https://commons.wikimedia.org/wiki/File:%E5%B7%9E%E6%A1%A5%E8%80%81%E8%A1%97%E5%85%A5%E5%8F%A3.jpg"
-    },
-    "jingan": {
-      "src": "./assets/jingan.jpg",
-      "caption": "靜安寺",
-      "author": "Stefan Fussan",
-      "license": "CC BY-SA 3.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-      "source": "https://commons.wikimedia.org/wiki/File:Shanghai_-_Jing%E2%80%99an-Tempel_-_0073.jpg"
-    },
-    "kerry": {
-      "src": "./assets/kerry.jpg",
-      "caption": "靜安嘉里中心",
-      "author": "MNXANL",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-      "source": "https://commons.wikimedia.org/wiki/File:201907_Jing_An_Kerry_Centre.jpg"
-    },
-    "wukangroad": {
-      "src": "./assets/wukangroad.jpg",
-      "caption": "武康路街景",
-      "author": "Livelikerw",
-      "license": "CC BY-SA 3.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-      "source": "https://commons.wikimedia.org/wiki/File:Street_View_of_Wukang_Road_1.JPG"
-    }
-  }
+  ]
 };

@@ -5,7 +5,7 @@
 ## 上傳與開啟
 
 1. 在 GitHub 建立一個 repository（若公開，請只放可以公開的內容）。
-2. 解壓縮本檔案包，把 **index.html、style.css、app.js、data.js、icon.svg、.nojekyll、CREDITS.md 與整個 assets 資料夾** 放到 repository 最外層。不要只上傳 ZIP，也不要多包一層資料夾。
+2. 解壓縮本檔案包，把 **index.html、style.css、app.js、data.js、icon.svg、.nojekyll** 放到 repository 最外層。不要只上傳 ZIP，也不要多包一層資料夾。
 3. Commit changes。
 4. Settings → Pages → Build and deployment → Source 選 Deploy from a branch。
 5. Branch 選 main、資料夾選 /(root)，按 Save。
@@ -23,19 +23,11 @@
 
 ## 在網頁調整行程
 
-1. 按「調整行程」，每站會出現「上移／下移」。
-2. 選另一個日期再按「移至該天」，該站會移到目標日期最後一站，切換該天即可繼續上下調整。
-3. 按「完成調整」收起按鈕。順序只存在目前裝置的瀏覽器，不會自動同步到 GitHub 或家人手機。
-4. 要分享新順序，按「匯出行程 data.js」，把下載的 data.js 上傳 GitHub 覆蓋同名檔案。
-5. 「恢復上傳版順序」會恢復目前網頁 data.js 的排序，不會刪除每日備註。
+每個行程最右側都有 ↑／↓，直接點即可調整同一天內的順序。第一站無法再上移，最後一站無法再下移。
 
-調整不會自動重算時間、交通、當日標題或天氣地點，請逐項確認。備註不含在匯出檔。手機可能將檔案存入「下載項目」。新版本上傳後，本裝置之前的排序可能仍存在；按「恢復上傳版順序」即可套用新上傳的順序。若瀏覽器禁止儲存，頁面會提醒立即匯出。
+順序會自動存在本裝置的瀏覽器，重新開啟仍保留；不會同步到家人手機。標示時間不會自動重算。備註、清單勾選也會保留。清除瀏覽器資料後，本機順序與備註可能消失。
 
-## 景點照片
-
-景點旁附實際照片，來源為 Wikimedia Commons，圖下顯示作者、原圖與授權連結；完整清單見 CREDITS.md。照片為景點參考，非即時葉況、店址或營業狀態；餐廳未使用無關食物照代替。淮海中路附街景，不代表 Matcha Wang 店面。
-
-更換照片：將檔案放入 assets，在 data.js 的 photos 表設定 src、caption、author、license、licenseUrl、source，再於行程 photos 陣列填入照片代號。保留作品本身要求的授權與署名。
+若要更新全家看到的行程，仍需修改 data.js 並上傳 GitHub。本版沒有景點照片，無須上傳 assets 資料夾；舊資料夾即使留在 GitHub 也不會再顯示。
 
 ## 每日天氣
 
@@ -60,4 +52,4 @@
 
 ## 驗證
 
-`node --check app.js` 與 `node --check data.js` 檢查語法。無外部字型或建置步驟；照片隨包附於 assets 資料夾，使用時須保留署名及授權連結。建議首次部署後在手機確認天氣連線、導航與所有日期。
+`node --check app.js` 與 `node --check data.js` 檢查語法。無外部字型或建置步驟；無外部圖片依賴。建議首次部署後在手機確認天氣連線、導航與所有日期。
